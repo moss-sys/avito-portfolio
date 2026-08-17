@@ -11,259 +11,224 @@
 <style>
 
 :root, :root[data-theme="dark"], :root[data-theme="light"]{
-  color-scheme:light;
-  --ground:#E9EBED;
-  --panel:#FCFCFD;
-  --panel-2:#F2F4F6;
-  --ink:#12161D;
-  --ink-2:#5A6270;
-  --ink-3:#8E96A2;
-  --rule:#C7CCD3;
-  --rule-soft:#DEE2E7;
-  --accent:#2438A8;
-  --accent-soft:rgba(36,56,168,.09);
-  --pos:#1C6B4F;
-  --neg:#9E2B1E;
+  color-scheme:dark;
+  --ground:#08090B;
+  --panel:#121419;
+  --panel-2:#181B21;
+  --panel-3:#1E222A;
+  --ink:#F3F5F8;
+  --ink-2:#A2A9B4;
+  --ink-3:#6B7280;
+  --rule:#23262E;
+  --rule-2:#2C3039;
+  --accent:#E5162C;
+  --blue:#5B8CFF;
   --sans:"Onest","Helvetica Neue",Helvetica,Arial,sans-serif;
-  --mono:"Onest","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --r-lg:26px;
+  --r-md:18px;
+  --r-sm:12px;
 }
-.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
-
 *{box-sizing:border-box}
-body{
-  margin:0;
-  background:var(--ground);
-  color:var(--ink);
-  font-family:var(--sans);
-  font-size:15px;
-  line-height:1.45;
-  -webkit-font-smoothing:antialiased;
-}
-.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
+  font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1220px;margin:0 auto;padding:0 20px}
 
-/* ─── ШАПКА ─── */
-.masthead{border-bottom:2px solid var(--ink);background:var(--ground)}
-.masthead .wrap{padding-top:24px;padding-bottom:20px}
-.mast-top{display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap;
-  border-bottom:1px solid var(--rule);padding-bottom:10px;margin-bottom:14px}
-.mast-label{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);font-weight:500}
-h1{font-size:clamp(40px,5.4vw,64px);line-height:1;letter-spacing:-.038em;font-weight:700;margin:0 0 14px}
-.sub{font-size:clamp(16px,1.5vw,19.5px);color:var(--ink);letter-spacing:-.014em;margin:0 0 12px;line-height:1.38;
-  max-width:44ch;font-weight:500}
-.about{font-size:15px;color:var(--ink-2);margin:0;line-height:1.55;max-width:52ch;column-gap:32px}
-.mast-grid{padding:22px 0 0}
-.ident{display:grid;grid-template-columns:210px minmax(0,1.05fr) minmax(0,1fr);gap:34px;align-items:start}
-.photo{width:210px;height:270px;object-fit:cover;object-position:50% 22%;display:block;border:1px solid var(--rule);
-  filter:saturate(.92) contrast(1.02)}
-.photo-cap{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;
-  color:var(--ink-3);margin-top:8px;display:block}
-@media(max-width:1000px){
-  .ident{grid-template-columns:180px minmax(0,1fr);gap:26px}
-  .photo{width:180px;height:232px}
-  .id-about{grid-column:1/-1}
+/* ─── ВЕРХНЯЯ ПОЛОСА ─── */
+.topbar{border-bottom:1px solid var(--rule);background:var(--ground);position:relative;z-index:30}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding-top:15px;padding-bottom:15px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:11px;font-weight:700;letter-spacing:-.02em;font-size:16px}
+.brand-mark{width:34px;height:34px;border-radius:9px;object-fit:cover;object-position:50% 18%;
+  border:1px solid var(--rule-2)}
+.brand small{display:block;font-weight:400;font-size:11.5px;color:var(--ink-3);letter-spacing:0}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:11px 20px;
+  font-size:14px;font-weight:600;text-decoration:none;border:1px solid transparent;cursor:pointer;
+  transition:transform .14s,box-shadow .14s,background .14s,border-color .14s}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 6px 22px rgba(229,22,44,.32)}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 9px 28px rgba(229,22,44,.45)}
+.btn-ghost{background:var(--panel-2);color:var(--ink);border-color:var(--rule-2)}
+.btn-ghost:hover{background:var(--panel-3);border-color:#3A404B}
+.btn:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.btn-sm{padding:9px 17px;font-size:13.5px}
+
+/* ─── ГЕРОЙ ─── */
+.hero{position:relative;margin:24px 0 0;border-radius:var(--r-lg);overflow:hidden;
+  border:1px solid var(--rule-2);background:#0D0E12;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;
+  background:
+    radial-gradient(720px 400px at 6% -14%, rgba(190,20,45,.40), transparent 62%),
+    radial-gradient(640px 460px at 97% 6%, rgba(30,58,138,.32), transparent 60%),
+    linear-gradient(160deg,#141017 0%,#0C0D11 46%,#0A0C11 100%)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;opacity:.5;
+  background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);
+  background-size:52px 52px;
+  -webkit-mask-image:radial-gradient(circle at 28% 24%,#000,transparent 76%);
+  mask-image:radial-gradient(circle at 28% 24%,#000,transparent 76%)}
+.hero-in{display:grid;grid-template-columns:minmax(0,1.15fr) 300px;gap:40px;
+  padding:40px 40px 38px;align-items:center}
+.eyebrow{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:600;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--blue);margin:0 0 18px}
+.eyebrow::before{content:"";width:34px;height:2px;background:var(--blue);border-radius:2px;flex:none}
+h1{font-size:clamp(32px,4.2vw,54px);line-height:1.05;letter-spacing:-.038em;font-weight:800;
+  margin:0 0 16px;text-wrap:balance}
+.hero-sub{font-size:16.5px;color:var(--ink-2);margin:0 0 24px;max-width:48ch}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero-photo{border-radius:20px;width:300px;height:360px;display:block;object-fit:cover;
+  object-position:50% 18%;border:1px solid rgba(255,255,255,.12);box-shadow:0 24px 56px rgba(0,0,0,.55)}
+@media(max-width:900px){
+  .hero-in{grid-template-columns:1fr;gap:26px;padding:30px 22px 28px}
+  .hero-photo{width:210px;height:250px}
 }
-@media(max-width:640px){
-  .ident{grid-template-columns:1fr;gap:18px}
-  .photo{width:150px;height:194px}
-  .id-about{grid-column:auto}
-}
-.track{list-style:none;margin:22px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
-  border-top:1px solid var(--ink)}
-.track li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:baseline;
-  padding:11px 16px 13px 0;border-bottom:1px solid var(--rule)}
-.track b{font-size:27px;font-weight:700;letter-spacing:-.04em;color:var(--accent);
+
+/* ─── ФАКТЫ И ИТОГИ ─── */
+.strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:13px 0 0}
+.cell{background:var(--panel);border:1px solid var(--rule);border-radius:var(--r-md);padding:16px 18px 18px}
+.cell b{display:block;font-size:27px;font-weight:800;letter-spacing:-.038em;margin-bottom:4px;
   font-variant-numeric:tabular-nums}
-.track span{font-size:13.5px;color:var(--ink-2);line-height:1.35}
-@media(max-width:820px){.track{grid-template-columns:1fr}}
-.lnk{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent}
-.lnk:hover{border-bottom-color:var(--accent)}
-.lnk:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-footer .lnk{letter-spacing:.02em}
-.fsep{color:var(--rule);margin:0 5px}
+.cell span{font-size:13px;color:var(--ink-3);line-height:1.35;display:block}
+.cell.is-accent b{color:var(--accent)}
+@media(max-width:900px){.strip{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.strip{grid-template-columns:1fr}}
 
-.totals{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:20px 0 4px;
-  border-top:1px solid var(--ink);border-left:1px solid var(--rule)}
-.tot{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:10px 14px 12px;background:var(--panel)}
-.tot dt{font-size:10.5px;letter-spacing:.09em;font-weight:500;text-transform:uppercase;color:var(--ink-2);margin:0 0 4px}
-.tot dd{margin:0;font-size:clamp(21px,2.6vw,29px);font-weight:700;letter-spacing:-.035em;
-  font-variant-numeric:tabular-nums}
-@media(max-width:640px){.totals{grid-template-columns:repeat(2,1fr)}}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;
+  flex-wrap:wrap;margin:46px 0 16px}
+h2{font-size:clamp(23px,2.4vw,31px);line-height:1.12;letter-spacing:-.034em;font-weight:800;margin:0}
 
-/* ─── ПАНЕЛЬ УПРАВЛЕНИЯ ─── */
-.controls{position:sticky;top:0;z-index:20;background:var(--ground);border-bottom:1px solid var(--rule);
-  padding:9px 0}
-.controls .wrap{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
-.filters{display:flex;gap:0;flex-wrap:wrap;border:1px solid var(--rule)}
-.filters button{
-  font-size:11.5px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;
-  background:var(--panel);color:var(--ink-2);border:0;border-right:1px solid var(--rule);
-  padding:7px 12px;cursor:pointer;transition:background .12s,color .12s}
-.filters button:last-child{border-right:0}
-.filters button:hover{background:var(--panel-2);color:var(--ink)}
-.filters button[aria-pressed="true"]{background:var(--ink);color:var(--ground)}
-.count{font-size:11.5px;font-weight:500;color:var(--ink-3);letter-spacing:.06em;margin-left:auto}
+/* ─── ПАНЕЛЬ ─── */
+.controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:0 0 18px}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filters button{font-size:13.5px;font-weight:600;background:var(--panel);color:var(--ink-2);
+  border:1px solid var(--rule);border-radius:999px;padding:8px 16px;cursor:pointer;
+  transition:background .14s,color .14s,border-color .14s}
+.filters button:hover{background:var(--panel-3);color:var(--ink)}
+.filters button[aria-pressed="true"]{background:var(--ink);color:#0A0B0E;border-color:var(--ink)}
+.filters button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.sortbox{margin-left:auto;display:flex;align-items:center;gap:9px;font-size:13.5px;color:var(--ink-3)}
+select{font-family:inherit;font-size:13.5px;font-weight:600;color:var(--ink);background:var(--panel);
+  border:1px solid var(--rule);border-radius:999px;padding:8px 14px;cursor:pointer}
+select:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 
-/* ─── ТАБЛИЦА КЕЙСОВ ─── */
-.registry{width:100%;border-collapse:collapse;margin:0 0 6px;font-variant-numeric:tabular-nums}
-.registry thead th{
-  position:sticky;top:38px;z-index:10;background:var(--ground);
-  font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);
-  font-weight:500;text-align:right;padding:0;border-bottom:1px solid var(--ink)}
-.registry thead th:nth-child(1),.registry thead th:nth-child(2),.registry thead th:nth-child(3){text-align:left}
-.registry thead th button{
-  all:unset;display:block;width:100%;padding:8px 10px 7px;cursor:pointer;text-align:inherit;
-  font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit;box-sizing:border-box}
-.registry thead th button:hover{color:var(--ink);background:var(--accent-soft)}
-.registry thead th button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
-.arrow{opacity:0;font-size:9px}
-th[data-active="1"] .arrow{opacity:1;color:var(--accent)}
-th[data-active="1"] button{color:var(--ink)}
-
-.row{border-bottom:1px solid var(--rule-soft);cursor:pointer;background:var(--panel)}
-.row:hover{background:var(--panel-2)}
-.row.open{background:var(--panel-2)}
-.row td{padding:9px 10px;text-align:right;vertical-align:baseline}
-.row td:nth-child(1),.row td:nth-child(2),.row td:nth-child(3){text-align:left}
-.c-num{font-size:12.5px;font-variant-numeric:tabular-nums;color:var(--ink-3);width:44px}
-.c-niche{font-weight:600;letter-spacing:-.012em;font-size:15.5px}
-.c-cat{font-size:11px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2);white-space:nowrap}
-.c-per{font-size:12.5px;font-variant-numeric:tabular-nums;color:var(--ink-2);white-space:nowrap}
-.c-num2{font-size:14px;font-variant-numeric:tabular-nums}
-.c-contacts{font-size:15.5px;font-weight:700;font-variant-numeric:tabular-nums}
-.c-cpc{font-size:14px;font-variant-numeric:tabular-nums}
-.c-cpc b{font-weight:600}
-.row.open .c-niche{color:var(--accent)}
+/* ─── КАРТОЧКИ КЕЙСОВ ─── */
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.grid{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--rule);border-radius:var(--r-md);overflow:hidden;
+  display:flex;flex-direction:column;transition:border-color .16s,transform .16s}
+.card:hover{border-color:var(--rule-2);transform:translateY(-2px)}
+.card-shot{position:relative;background:#0B0D11;border-bottom:1px solid var(--rule);cursor:zoom-in}
+.card-shot img{width:100%;display:block;aspect-ratio:16/10;object-fit:cover;object-position:50% 0;
+  opacity:.92;transition:opacity .16s}
+.card-shot:hover img{opacity:1}
+.card-shot::after{content:"Открыть скриншот";position:absolute;right:10px;bottom:10px;
+  font-size:11.5px;font-weight:600;color:var(--ink);background:rgba(10,11,14,.82);
+  border:1px solid var(--rule-2);border-radius:999px;padding:5px 11px;backdrop-filter:blur(4px)}
+.card-body{padding:16px 18px 6px}
+.card-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px}
+.card h3{font-size:17px;font-weight:700;letter-spacing:-.024em;margin:0;line-height:1.25}
+.card-n{font-size:12.5px;color:var(--ink-3);font-variant-numeric:tabular-nums;flex:none}
+.card-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 14px}
+.chip{font-size:11.5px;font-weight:600;color:var(--ink-2);background:var(--panel-3);
+  border:1px solid var(--rule-2);border-radius:999px;padding:3px 10px}
+.card-per{font-size:12.5px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.kpi{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--rule);
+  margin-top:auto}
+.kpi div{padding:12px 18px 13px;border-bottom:1px solid var(--rule)}
+.kpi div:nth-child(odd){border-right:1px solid var(--rule)}
+.kpi div:nth-child(n+3){border-bottom:0}
+.kpi b{display:block;font-size:19px;font-weight:700;letter-spacing:-.028em;
+  font-variant-numeric:tabular-nums;line-height:1.2}
+.kpi .lab{display:block;font-size:11.5px;color:var(--ink-3);margin-top:2px}
+.kpi .hi{color:var(--accent)}
 .dash{color:var(--ink-3)}
 
-/* раскрытая карточка */
-.detail td{padding:0;background:var(--ground);border-bottom:1px solid var(--rule)}
-.detail-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:0;
-  border-top:1px solid var(--accent)}
-@media(max-width:900px){.detail-in{grid-template-columns:1fr}}
-.d-left{padding:18px 18px 20px;border-right:1px solid var(--rule)}
-@media(max-width:900px){.d-left{border-right:0;border-bottom:1px solid var(--rule)}}
-.note{font-size:16px;line-height:1.55;margin:0 0 16px;max-width:54ch;color:var(--ink);letter-spacing:-.005em}
-.mgrid{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
-.m{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:7px 11px 9px;background:var(--panel)}
-.m dt{font-size:10.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin:0 0 2px}
-.m dd{margin:0;font-size:17px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.extra{margin:14px 0 0;padding-top:12px;border-top:1px solid var(--rule);
-  font-size:13.5px;color:var(--ink-2);line-height:1.6}
-.extra b{color:var(--ink);font-weight:600}
-.d-right{padding:18px;display:flex;flex-direction:column;gap:10px;background:var(--panel-2)}
-.shotcap{font-size:10.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
-.shot{width:100%;display:block;border:1px solid var(--rule);cursor:zoom-in;background:var(--panel)}
-.shot:hover{border-color:var(--accent)}
-
 /* лайтбокс */
-.lb{position:fixed;inset:0;z-index:100;background:rgba(10,12,16,.92);display:none;
-  align-items:center;justify-content:center;padding:26px;cursor:zoom-out}
+.lb{position:fixed;inset:0;z-index:100;background:rgba(4,5,7,.94);display:none;
+  align-items:center;justify-content:center;padding:24px;cursor:zoom-out;backdrop-filter:blur(3px)}
 .lb.on{display:flex}
-.lb img{max-width:100%;max-height:100%;border:1px solid rgba(255,255,255,.18)}
-.lb-close{position:absolute;top:16px;right:20px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;
-  color:#fff;background:transparent;border:1px solid rgba(255,255,255,.4);padding:6px 11px;cursor:pointer}
+.lb-stack{display:flex;flex-direction:column;gap:12px;max-height:100%;overflow:auto}
+.lb img{max-width:100%;border-radius:var(--r-sm);border:1px solid rgba(255,255,255,.16);display:block}
+.lb-close{position:absolute;top:18px;right:22px;font-size:13px;font-weight:600;color:#fff;
+  background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.22);border-radius:999px;
+  padding:8px 16px;cursor:pointer;z-index:2}
 
-/* подвал */
-footer{border-top:2px solid var(--ink);margin-top:38px;padding:18px 0 44px;
+footer{border-top:1px solid var(--rule);margin-top:52px;padding:24px 0 44px;
   font-size:13px;color:var(--ink-3);line-height:1.75}
-footer b{color:var(--ink-2);font-weight:400}
-
-@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-
-/* мобильная таблица */
-@media(max-width:760px){
-  .registry,.registry tbody{display:block;width:100%}
-  .registry thead{display:none}
-  .row{display:grid;grid-template-columns:auto 1fr auto;gap:2px 10px;padding:11px 2px 12px;align-items:baseline}
-  .row td{padding:0;text-align:left!important}
-  .c-num{grid-row:1;width:auto}
-  .c-niche{grid-row:1;grid-column:2}
-  .c-cat{grid-row:2;grid-column:2/4}
-  .c-cat br{display:none}
-  .c-per{margin-left:8px}
-  .c-views{display:none}
-  .c-contacts{grid-row:1;grid-column:3;text-align:right!important}
-  .c-contacts::after{content:" конт.";font-size:10px;font-weight:400;color:var(--ink-3)}
-  .c-cpc{grid-row:3;grid-column:2/4;color:var(--ink-2)}
-  .c-spend{display:none}
-  .detail{display:block}
-  .detail td{display:block}
-}
+footer b{color:var(--ink-2);font-weight:600}
+.f-top{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
 
 
-<header class="masthead">
+<header class="topbar">
   <div class="wrap">
-    <div class="mast-top">
-      <span class="mast-label">Кейсы · Авито</span>
-      <a class="mast-label lnk" href="https://hh.ru/resume/eab1584fff0c3f3f5e0039ed1f773068526261" target="_blank" rel="noopener">Резюме на hh.ru ↗</a>
+    <div class="brand">
+      <img class="brand-mark" src="photo.webp" alt="" width="34" height="34">
+      <span>Артём Соколов<small>Авитолог · Санкт-Петербург</small></span>
     </div>
-    <div class="mast-grid">
-      <div class="ident">
-        <div>
-          <img class="photo" src="photo.webp" alt="Артём Соколов, авитолог" width="210" height="270">
-          <span class="photo-cap">Санкт-Петербург</span>
-        </div>
-        <div>
-        <h1>Артём<br>Соколов</h1>
-        <p class="sub">Авитолог. Работаю с февраля 2024 года. Строю на Авито стабильный поток заявок
-          и снижаю цену обращения: структура каталога, гео-сетка объявлений, распределение бюджета,
-          работа с воронкой и переписками.</p>
-        </div>
-        <div class="id-about">
-          <p class="about">Веду 10–15 проектов одновременно — от частного мастера с тремя объявлениями
-          до кабинета на 22 тысячи позиций. Кроме Авито работаю с Яндекс.Директом, ВК Ads, Figma и Tilda.
-          За последний год собрал внутренние продукты для команды: дашборд аналитики Яндекс.Директа
-          и ИИ-ассистента для отдела продаж.<br><br>
-          Ниже — мои кейсы: строка на проект, каждая раскрывается до выгрузки статистики из кабинета.</p>
-        </div>
-      </div>
-      <ul class="track">
-        <li><b>68</b><span>личных кабинетов провёл за всё время. Здесь — те, по которым сохранились выгрузки</span></li>
-        <li><b>3</b><span>компании, в которых работал</span></li>
-        <li><b>2</b><span>специалиста в подчинении — руководитель направления по Авито</span></li>
-      </ul>
-      <dl class="totals" id="totals"></dl>
-    </div>
+    <a class="btn btn-ghost btn-sm" href="https://hh.ru/resume/eab1584fff0c3f3f5e0039ed1f773068526261" target="_blank" rel="noopener">Резюме на hh.ru ↗</a>
   </div>
 </header>
 
-<div class="controls">
-  <div class="wrap">
-    <div class="filters" id="filters"></div>
-    <span class="count" id="count"></span>
-  </div>
-</div>
-
 <main class="wrap">
-  <table class="registry">
-    <thead>
-      <tr>
-        <th data-sort="n" data-active="1"><button type="button">№ <span class="arrow">▲</span></button></th>
-        <th data-sort="niche"><button type="button">Ниша <span class="arrow">▲</span></button></th>
-        <th data-sort="cat"><button type="button">Категория · период <span class="arrow">▲</span></button></th>
-        <th data-sort="views"><button type="button">Просмотры <span class="arrow">▲</span></button></th>
-        <th data-sort="contacts"><button type="button">Контакты <span class="arrow">▲</span></button></th>
-        <th data-sort="cpc"><button type="button">₽ / контакт <span class="arrow">▲</span></button></th>
-        <th data-sort="spend"><button type="button">Бюджет <span class="arrow">▲</span></button></th>
-      </tr>
-    </thead>
-    <tbody id="tb"></tbody>
-  </table>
+  <section class="hero">
+    <div class="hero-in">
+      <div>
+        <p class="eyebrow">Артём Соколов · авитолог</p>
+        <h1>Кейсы по Авито</h1>
+        <p class="hero-sub">44 кабинета с выгрузками статистики. Ниша, период, обращения,
+          цена обращения и бюджет — со скриншотом кабинета.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#cases">Смотреть кейсы</a>
+          <a class="btn btn-ghost" href="https://hh.ru/resume/eab1584fff0c3f3f5e0039ed1f773068526261" target="_blank" rel="noopener">Резюме</a>
+        </div>
+      </div>
+      <div>
+        <img class="hero-photo" src="photo.webp" alt="Артём Соколов, авитолог" width="300" height="360">
+      </div>
+    </div>
+  </section>
 
+  <div class="strip">
+    <div class="cell is-accent"><b>68</b><span>кабинетов за всё время</span></div>
+    <div class="cell"><b>3</b><span>компании в опыте</span></div>
+    <div class="cell"><b>2</b><span>специалиста в подчинении</span></div>
+    <div class="cell"><b>02.2024</b><span>начало работы</span></div>
+  </div>
+
+  <div class="section-head"><h2>Суммарно</h2></div>
+  <div class="strip" id="totals"></div>
+
+  <div class="section-head" id="cases"><h2>Кейсы</h2></div>
+
+  <div class="controls">
+    <div class="filters" id="filters"></div>
+    <label class="sortbox">Сортировка
+      <select id="sort">
+        <option value="contacts">по обращениям</option>
+        <option value="cpc">по цене обращения</option>
+        <option value="views">по просмотрам</option>
+        <option value="spend">по бюджету</option>
+        <option value="niche">по названию</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="grid" id="grid"></div>
 </main>
 
 <footer class="wrap">
-  <a class="lnk" href="https://hh.ru/resume/eab1584fff0c3f3f5e0039ed1f773068526261" target="_blank" rel="noopener">Резюме на hh.ru ↗</a>
-  <span class="fsep">·</span> опыт, стек и контакты для связи<br><br>
-  <b>Названия компаний не публикуются</b> — по договорённости с клиентами указаны только ниша и период.<br>
-  <b>Скриншоты</b> приведены как есть, с водяным знаком; на нескольких кадрах закрыто название аккаунта.<br>
-  <b>Пустой бюджет</b> в строке означает, что на кадре сумма расходов не попала в область экрана.
+  <div class="f-top">
+    <a class="btn btn-primary btn-sm" href="https://hh.ru/resume/eab1584fff0c3f3f5e0039ed1f773068526261" target="_blank" rel="noopener">Резюме на hh.ru ↗</a>
+  </div>
+  <b>Названия компаний не публикуются</b> — указаны только ниша и период.<br>
+  <b>Скриншоты</b> приведены как есть; на нескольких кадрах закрыто название аккаунта.<br>
+  <b>Прочерк вместо бюджета</b> — сумма расходов не попала в область экрана на кадре.
 </footer>
 
-<div class="lb" id="lb"><button class="lb-close" type="button">ЗАКРЫТЬ ✕</button><img alt="Скриншот статистики кабинета Авито"></div>
+<div class="lb" id="lb"><button class="lb-close" type="button">Закрыть ✕</button><div class="lb-stack"></div></div>
 
 <script>
 const IMG = {"Готовый бизнес 1.png": "img/01a.webp", "Готовый бизнес 2.png": "img/01b.webp", "Сруб 1.png": "img/02a.webp", "Сруб 2.png": "img/02b.webp", "Детали авто 2.png": "img/03a.webp", "Детали авто 1.png": "img/03b.webp", "РБТ 1.png": "img/04a.webp", "РБТ 2.png": "img/04b.webp", "Ассенизатор 1.png": "img/05a.webp", "Ассенизатор 2.png": "img/05b.webp", "Игровой центр 1.png": "img/06a.webp", "Игровой центр 2.png": "img/06b.webp", "Септики.png": "img/07a.webp", "Автомоблильные коврики 1.jpg": "img/08a.webp", "Автомоблильные коврики 2.jpg": "img/08b.webp", "Автомоблильные коврики 3.jpg": "img/08c.webp", "Вакансии 1.png": "img/09a.webp", "Вакансии 2.png": "img/09b.webp", "элтрон 1.jpg": "img/10a.webp", "элтрон 2.jpg": "img/10b.webp", "Муж на час 1.png": "img/11a.webp", "Муж на час 2.png": "img/11b.webp", "рбт 2.jpg": "img/12a.webp", "рбт 1.jpg": "img/12b.webp", "1с 1.jpg": "img/13a.webp", "1с 2.jpg": "img/13b.webp", "Овощи и фрукты 1.png": "img/14a.webp", "Овощи и фрукты 2.png": "img/14b.webp", "фигруки по фото 1.jpg": "img/15a.webp", "фигруки по фото 1-1.jpg": "img/15b.webp", "Подписка жпт 1.jpg": "img/16a.webp", "Подписка жпт 2.jpg": "img/16b.webp", "Бурение 1.jpg": "img/17a.webp", "Бурение 2.jpg": "img/17b.webp", "Окна 1.png": "img/18a.webp", "Окна 2.png": "img/18b.webp", "Прогулки 1.jpg": "img/19a.webp", "Прогулки 2.jpg": "img/19b.webp", "Утепление ппу 1.jpg": "img/20a.webp", "Утепление ппу 2.jpg": "img/20b.webp", "Алексей частный мастер 1.jpg": "img/21a.webp", "Алексей частный мастер 2.jpg": "img/21b.webp", "Бетонные блоки 1.jpg": "img/22a.webp", "Бетонные блоки 2.jpg": "img/22b.webp", "3д печать 1.jpg": "img/23a.webp", "3д печать 2.jpg": "img/23b.webp", "Кладовка 1.jpg": "img/24a.webp", "Кладовка 2.jpg": "img/24b.webp", "Энергия 1.jpg": "img/25a.webp", "Энергия 2.jpg": "img/25b.webp", "Платы 1.png": "img/26a.webp", "Платы 2.png": "img/26b.webp", "Платиковая упаковка 1.png": "img/27a.webp", "Платиковая упаковка 2.png": "img/27b.webp", "сенгвич панели 1.jpg": "img/28a.webp", "сенгвич панели 2.jpg": "img/28b.webp", "Вакансии 1.jpg": "img/29a.webp", "Вакансии 2.jpg": "img/29b.webp", "Готовый бизнес 3.png": "img/30a.webp", "Готовый бизнес 4.png": "img/30b.webp", "Честный знак 1.png": "img/31a.webp", "Честный знак 2.png": "img/31b.webp", "Пункт выдачи 1.png": "img/32a.webp", "Пункт выдачи 2.png": "img/32b.webp", "Вакансии 3.jpg": "img/33a.webp", "Вакансии 4.jpg": "img/33b.webp", "юристы 1.jpg": "img/34a.webp", "юристы 2.jpg": "img/34b.webp", "Частный мастер 1.jpg": "img/35a.webp", "Частный мастер 2.jpg": "img/35b.webp", "Праздники 1.png": "img/36a.webp", "Праздники 2.png": "img/36b.webp", "вакансии энергия 1.jpg": "img/37a.webp", "вакансии энергия 2.jpg": "img/37b.webp", "Насосные станции 1.jpg": "img/38a.webp", "Насосные станции 2.jpg": "img/38b.webp", "Салон красоты.png": "img/39a.webp", "Промылешнный полы 1.jpg": "img/40a.webp", "Промылешнный полы 2.jpg": "img/40b.webp", "Септики 3.png": "img/41a.webp", "Септики 4.png": "img/41b.webp", "Наращивание ресниц.png": "img/42a.webp", "Бани 1.png": "img/43a.webp", "Бани 2.png": "img/43b.webp", "Супер кладовка1.jpg": "img/44a.webp", "Супер кладовка2.jpg": "img/44b.webp"};
@@ -274,26 +239,20 @@ const money = n => n == null ? null : Math.round(n).toLocaleString('ru-RU') + ' 
 const cpcFmt = n => n == null ? null : (n < 10 ? n.toFixed(1).replace('.',',') : Math.round(n).toLocaleString('ru-RU')) + ' ₽';
 const plural = (n, f) => { const a = Math.abs(n) % 100, b = a % 10;
   if (a > 10 && a < 20) return f[2]; if (b > 1 && b < 5) return f[1]; if (b === 1) return f[0]; return f[2]; };
+const dash = '<span class="dash">—</span>';
 
-const tb = document.getElementById('tb');
-let filter = 'Все', sortKey = 'n', sortDir = 1;
+let filter = 'Все', sortKey = 'contacts';
 
-/* итоги по всем проектам */
 (function totals(){
-  const t = DATA.reduce((a,c)=>({
-    v: a.v + (c.views||0), k: a.k + (c.contacts||0), s: a.s + (c.spend||0), a: a.a + (c.ads||0)
-  }), {v:0,k:0,s:0,a:0});
-  const cells = [
-    ['Кейсов здесь', DATA.length.toLocaleString('ru-RU')],
-    ['Просмотров', (t.v/1e6).toFixed(2).replace('.',',') + ' млн'],
-    ['Контактов', fmt(t.k)],
-    ['Бюджета проведено', (t.s/1e6).toFixed(1).replace('.',',') + ' млн ₽']
-  ];
-  document.getElementById('totals').innerHTML = cells.map(([d,v]) =>
-    `<div class="tot"><dt>${d}</dt><dd>${v}</dd></div>`).join('');
+  const t = DATA.reduce((a,c)=>({v:a.v+(c.views||0), k:a.k+(c.contacts||0), s:a.s+(c.spend||0), a:a.a+(c.ads||0)}), {v:0,k:0,s:0,a:0});
+  document.getElementById('totals').innerHTML = [
+    [(t.v/1e6).toFixed(2).replace('.',',') + ' млн', 'просмотров'],
+    [fmt(t.k), 'обращений'],
+    [(t.s/1e6).toFixed(1).replace('.',',') + ' млн ₽', 'бюджета проведено'],
+    [fmt(t.a), 'объявлений размещено']
+  ].map(([v,d]) => `<div class="cell"><b>${v}</b><span>${d}</span></div>`).join('');
 })();
 
-/* фильтры по категориям */
 const cats = ['Все', ...new Set(DATA.map(c=>c.cat))];
 document.getElementById('filters').innerHTML = cats.map(c =>
   `<button type="button" data-cat="${c}" aria-pressed="${c==='Все'}">${c}</button>`).join('');
@@ -303,18 +262,7 @@ document.getElementById('filters').addEventListener('click', e => {
   [...e.currentTarget.children].forEach(x => x.setAttribute('aria-pressed', x === b));
   render();
 });
-
-/* сортировка */
-document.querySelectorAll('th[data-sort]').forEach(th => {
-  th.querySelector('button').addEventListener('click', () => {
-    const k = th.dataset.sort;
-    if (sortKey === k) { sortDir *= -1; } else { sortKey = k; sortDir = (k==='n'||k==='niche'||k==='cat') ? 1 : -1; }
-    document.querySelectorAll('th[data-sort]').forEach(x => x.removeAttribute('data-active'));
-    th.setAttribute('data-active','1');
-    th.querySelector('.arrow').textContent = sortDir === 1 ? '▲' : '▼';
-    render();
-  });
-});
+document.getElementById('sort').addEventListener('change', e => { sortKey = e.target.value; render(); });
 
 function render(){
   const rows = DATA
@@ -322,66 +270,36 @@ function render(){
     .sort((a,b) => {
       const A = a[sortKey], B = b[sortKey];
       if (A == null) return 1; if (B == null) return -1;
-      if (typeof A === 'string') return A.localeCompare(B,'ru') * sortDir;
-      return (A - B) * sortDir;
+      if (typeof A === 'string') return A.localeCompare(B,'ru');
+      return sortKey === 'cpc' ? A - B : B - A;
     });
-  document.getElementById('count').textContent = rows.length + ' ' + plural(rows.length, ['проект','проекта','проектов']);
-  tb.innerHTML = rows.map(c => `
-    <tr class="row" data-id="${c.n}" tabindex="0" role="button" aria-expanded="false">
-      <td class="c-num">${String(c.n).padStart(2,'0')}</td>
-      <td class="c-niche">${c.niche}</td>
-      <td class="c-cat">${c.cat}<br><span class="c-per">${c.period}</span></td>
-      <td class="c-num2 c-views">${fmt(c.views) ?? '<span class="dash">—</span>'}</td>
-      <td class="c-contacts">${fmt(c.contacts) ?? '<span class="dash">—</span>'}</td>
-      <td class="c-cpc">${c.cpc != null ? '<b>'+cpcFmt(c.cpc)+'</b>' : '<span class="dash">—</span>'}</td>
-      <td class="c-num2 c-spend">${money(c.spend) ?? '<span class="dash">—</span>'}</td>
-    </tr>`).join('');
-}
-
-/* раскрытие строки */
-function toggle(tr){
-  const id = +tr.dataset.id;
-  const next = tr.nextElementSibling;
-  if (next && next.classList.contains('detail')) {
-    next.remove(); tr.classList.remove('open'); tr.setAttribute('aria-expanded','false'); return;
-  }
-  document.querySelectorAll('.detail').forEach(d => d.remove());
-  document.querySelectorAll('.row.open').forEach(r => { r.classList.remove('open'); r.setAttribute('aria-expanded','false'); });
-  const c = DATA.find(x => x.n === id);
-  const m = [];
-  if (c.views != null) m.push(['Просмотры', fmt(c.views)]);
-  if (c.contacts != null) m.push(['Контакты', fmt(c.contacts)]);
-  if (c.cpc != null) m.push(['Цена контакта', cpcFmt(c.cpc)]);
-  if (c.spend != null) m.push(['Бюджет', money(c.spend)]);
-  if (c.ads != null) m.push(['Объявлений', fmt(c.ads)]);
-  if (c.favs != null) m.push(['В избранном', fmt(c.favs)]);
-  const shots = (c.shots||[]).map((s,i) => IMG[s]
-    ? `<img class="shot" src="${IMG[s]}" alt="Статистика кабинета: ${c.niche}" loading="lazy">` : '').join('');
-  const tr2 = document.createElement('tr');
-  tr2.className = 'detail';
-  tr2.innerHTML = `<td colspan="7"><div class="detail-in">
-      <div class="d-left">
-        <p class="note">${c.note}</p>
-        <dl class="mgrid">${m.map(([d,v]) => `<div class="m"><dt>${d}</dt><dd>${v}</dd></div>`).join('')}</dl>
-        ${c.extra ? `<p class="extra">${c.extra}</p>` : ''}
+  document.getElementById('grid').innerHTML = rows.map(c => {
+    const first = (c.shots||[]).map(s => IMG[s]).filter(Boolean);
+    return `<article class="card">
+      ${first.length ? `<div class="card-shot" data-id="${c.n}"><img src="${first[0]}" alt="Статистика кабинета: ${c.niche}" loading="lazy"></div>` : ''}
+      <div class="card-body">
+        <div class="card-head"><h3>${c.niche}</h3><span class="card-n">${String(c.n).padStart(2,'0')}</span></div>
+        <div class="card-meta"><span class="chip">${c.cat}</span><span class="card-per">${c.period}</span></div>
       </div>
-      <div class="d-right">
-        <span class="shotcap">Кабинет · Аналитика · Статистика · ${c.period}</span>
-        ${shots}
-      </div></div></td>`;
-  tr.after(tr2);
-  tr.classList.add('open'); tr.setAttribute('aria-expanded','true');
+      <div class="kpi">
+        <div><b>${fmt(c.contacts) ?? dash}</b><span class="lab">обращений</span></div>
+        <div><b class="hi">${cpcFmt(c.cpc) ?? dash}</b><span class="lab">за обращение</span></div>
+        <div><b>${fmt(c.views) ?? dash}</b><span class="lab">просмотров</span></div>
+        <div><b>${money(c.spend) ?? dash}</b><span class="lab">бюджет</span></div>
+      </div>
+    </article>`;
+  }).join('');
 }
-tb.addEventListener('click', e => { const tr = e.target.closest('.row'); if (tr) toggle(tr); });
-tb.addEventListener('keydown', e => {
-  if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('row')) { e.preventDefault(); toggle(e.target); }
-});
 
-/* лайтбокс */
 const lb = document.getElementById('lb');
 document.addEventListener('click', e => {
-  if (e.target.classList.contains('shot')) { lb.querySelector('img').src = e.target.src; lb.classList.add('on'); }
-  else if (e.target.closest('#lb')) { lb.classList.remove('on'); }
+  const box = e.target.closest('.card-shot');
+  if (box) {
+    const c = DATA.find(x => x.n === +box.dataset.id);
+    lb.querySelector('.lb-stack').innerHTML = (c.shots||[]).map(s => IMG[s]
+      ? `<img src="${IMG[s]}" alt="Статистика кабинета: ${c.niche}">` : '').join('');
+    lb.classList.add('on');
+  } else if (e.target.closest('#lb')) { lb.classList.remove('on'); }
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('on'); });
 
