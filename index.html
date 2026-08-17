@@ -83,6 +83,11 @@ h1{font-size:clamp(38px,7vw,76px);line-height:.95;letter-spacing:-.035em;font-we
 .track b{font-family:var(--mono);font-size:23px;font-weight:600;letter-spacing:-.03em;
   text-align:right;font-variant-numeric:tabular-nums;color:var(--accent)}
 .track span{font-size:14px;color:var(--ink-2);line-height:1.4}
+.lnk{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent}
+.lnk:hover{border-bottom-color:var(--accent)}
+.lnk:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+footer .lnk{letter-spacing:.02em}
+.fsep{color:var(--rule);margin:0 5px}
 @media(max-width:820px){.mast-grid{grid-template-columns:1fr;gap:22px}}
 
 .totals{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--ink);
@@ -201,17 +206,17 @@ footer b{color:var(--ink-2);font-weight:400}
   <div class="wrap">
     <div class="mast-top">
       <span class="mast-label">Кейсы · Авито</span>
-      <span class="mast-label">2023 — 2026</span>
+      <a class="mast-label lnk" href="https://hh.ru/resume/eab1584fff0c3f3f5e0039ed1f773068526261" target="_blank" rel="noopener">Резюме на hh.ru ↗</a>
     </div>
     <div class="mast-grid">
       <div>
         <h1>Артём<br>Соколов</h1>
-        <p class="sub">Авитолог. Запуск и ведение кабинетов: структура каталога, гео-сетка объявлений,
-          распределение бюджета и работа с воронкой. Ниже — мои кейсы: по одной строке на проект,
-          каждая раскрывается до выгрузки статистики из кабинета.</p>
+        <p class="sub">Авитолог. Работаю с февраля 2024 года: запуск и ведение кабинетов — структура каталога,
+          гео-сетка объявлений, распределение бюджета, работа с воронкой. Ниже — мои кейсы: по одной строке
+          на проект, каждая раскрывается до выгрузки статистики из кабинета.</p>
         <ul class="track">
           <li><b>68</b><span>личных кабинетов провёл за всё время. Здесь показаны те, по которым сохранились выгрузки</span></li>
-          <li><b>3</b><span>диджитал-агентства, в которых работал</span></li>
+          <li><b>3</b><span>компании, в которых работал</span></li>
           <li><b>2</b><span>специалиста в подчинении — руководитель направления по Авито</span></li>
         </ul>
       </div>
@@ -246,6 +251,8 @@ footer b{color:var(--ink-2);font-weight:400}
 </main>
 
 <footer class="wrap">
+  <a class="lnk" href="https://hh.ru/resume/eab1584fff0c3f3f5e0039ed1f773068526261" target="_blank" rel="noopener">Резюме на hh.ru ↗</a>
+  <span class="fsep">·</span> опыт, стек и контакты для связи<br><br>
   <b>Названия компаний не публикуются</b> — по договорённости с клиентами указаны только ниша и период.<br>
   <b>Скриншоты</b> приведены как есть, с водяным знаком; на нескольких кадрах закрыто название аккаунта.<br>
   <b>Пустой бюджет</b> в строке означает, что на кадре сумма расходов не попала в область экрана.
