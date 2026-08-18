@@ -110,7 +110,7 @@ select{font-family:inherit;font-size:13.5px;font-weight:600;color:var(--ink);bac
 select:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 
 /* ─── КАРТОЧКИ КЕЙСОВ ─── */
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:56px}
 @media(max-width:1000px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:640px){.grid{grid-template-columns:1fr}}
 .card{background:var(--panel);border:1px solid var(--rule);border-radius:var(--r-md);overflow:hidden;
@@ -152,10 +152,6 @@ select:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
   background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.22);border-radius:999px;
   padding:8px 16px;cursor:pointer;z-index:2}
 
-footer{border-top:1px solid var(--rule);margin-top:52px;padding:24px 0 44px;
-  font-size:13px;color:var(--ink-3);line-height:1.75}
-footer b{color:var(--ink-2);font-weight:600}
-.f-top{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -219,14 +215,6 @@ footer b{color:var(--ink-2);font-weight:600}
   <div class="grid" id="grid"></div>
 </main>
 
-<footer class="wrap">
-  <div class="f-top">
-    <a class="btn btn-primary btn-sm" href="https://hh.ru/resume/eab1584fff0c3f3f5e0039ed1f773068526261" target="_blank" rel="noopener">Резюме на hh.ru ↗</a>
-  </div>
-  <b>Названия компаний не публикуются</b> — указаны только ниша и период.<br>
-  <b>Скриншоты</b> приведены как есть; на нескольких кадрах закрыто название аккаунта.<br>
-  <b>Прочерк вместо бюджета</b> — сумма расходов не попала в область экрана на кадре.
-</footer>
 
 <div class="lb" id="lb"><button class="lb-close" type="button">Закрыть ✕</button><div class="lb-stack"></div></div>
 
