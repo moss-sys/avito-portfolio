@@ -94,6 +94,7 @@ h1{font-size:clamp(32px,4.2vw,54px);line-height:1.05;letter-spacing:-.038em;font
 .section-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;
   flex-wrap:wrap;margin:46px 0 16px}
 h2{font-size:clamp(23px,2.4vw,31px);line-height:1.12;letter-spacing:-.034em;font-weight:800;margin:0}
+.section-note{font-size:13px;color:var(--ink-3);margin:0;max-width:52ch;line-height:1.45}
 
 /* ─── ПАНЕЛЬ ─── */
 .controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:0 0 18px}
@@ -194,7 +195,11 @@ select:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
     <div class="cell"><b>02.2024</b><span>начало работы</span></div>
   </div>
 
-  <div class="section-head"><h2>Суммарно</h2></div>
+  <div class="section-head">
+    <h2>За всё время</h2>
+    <p class="section-note">По всем 68 кабинетам за время работы. Ниже — 44 кейса,
+      по которым сохранились выгрузки статистики.</p>
+  </div>
   <div class="strip" id="totals"></div>
 
   <div class="section-head" id="cases"><h2>Кейсы</h2></div>
@@ -231,15 +236,13 @@ const dash = '<span class="dash">—</span>';
 
 let filter = 'Все', sortKey = 'contacts';
 
-(function totals(){
-  const t = DATA.reduce((a,c)=>({v:a.v+(c.views||0), k:a.k+(c.contacts||0), s:a.s+(c.spend||0), a:a.a+(c.ads||0)}), {v:0,k:0,s:0,a:0});
-  document.getElementById('totals').innerHTML = [
-    [(t.v/1e6).toFixed(2).replace('.',',') + ' млн', 'просмотров'],
-    [fmt(t.k), 'обращений'],
-    [(t.s/1e6).toFixed(1).replace('.',',') + ' млн ₽', 'бюджета проведено'],
-    [fmt(t.a), 'объявлений размещено']
-  ].map(([v,d]) => `<div class="cell"><b>${v}</b><span>${d}</span></div>`).join('');
-})();
+// итоги за всё время — цифры заданы владельцем сайта
+document.getElementById('totals').innerHTML = [
+  ['3 млн+', 'просмотров'],
+  ['100 000+', 'контактов'],
+  ['12 млн+', 'открученного бюджета, ₽'],
+  ['200 000+', 'опубликованных объявлений']
+].map(([v,d]) => `<div class="cell"><b>${v}</b><span>${d}</span></div>`).join('');
 
 const cats = ['Все', ...new Set(DATA.map(c=>c.cat))];
 document.getElementById('filters').innerHTML = cats.map(c =>
