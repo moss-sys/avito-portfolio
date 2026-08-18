@@ -105,10 +105,6 @@ h2{font-size:clamp(23px,2.4vw,31px);line-height:1.12;letter-spacing:-.034em;font
 .filters button:hover{background:var(--panel-3);color:var(--ink)}
 .filters button[aria-pressed="true"]{background:var(--ink);color:#0A0B0E;border-color:var(--ink)}
 .filters button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
-.sortbox{margin-left:auto;display:flex;align-items:center;gap:9px;font-size:13.5px;color:var(--ink-3)}
-select{font-family:inherit;font-size:13.5px;font-weight:600;color:var(--ink);background:var(--panel);
-  border:1px solid var(--rule);border-radius:999px;padding:8px 14px;cursor:pointer}
-select:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 
 /* ─── КАРТОЧКИ КЕЙСОВ ─── */
 .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:56px}
@@ -206,15 +202,6 @@ select:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 
   <div class="controls">
     <div class="filters" id="filters"></div>
-    <label class="sortbox">Сортировка
-      <select id="sort">
-        <option value="contacts">по обращениям</option>
-        <option value="cpc">по цене обращения</option>
-        <option value="views">по просмотрам</option>
-        <option value="spend">по бюджету</option>
-        <option value="niche">по названию</option>
-      </select>
-    </label>
   </div>
 
   <div class="grid" id="grid"></div>
@@ -234,7 +221,8 @@ const plural = (n, f) => { const a = Math.abs(n) % 100, b = a % 10;
   if (a > 10 && a < 20) return f[2]; if (b > 1 && b < 5) return f[1]; if (b === 1) return f[0]; return f[2]; };
 const dash = '<span class="dash">—</span>';
 
-let filter = 'Все', sortKey = 'contacts';
+let filter = 'Все';
+const sortKey = 'contacts';   // порядок фиксированный: от большего числа обращений
 
 // итоги за всё время — цифры заданы владельцем сайта
 document.getElementById('totals').innerHTML = [
@@ -253,7 +241,6 @@ document.getElementById('filters').addEventListener('click', e => {
   [...e.currentTarget.children].forEach(x => x.setAttribute('aria-pressed', x === b));
   render();
 });
-document.getElementById('sort').addEventListener('change', e => { sortKey = e.target.value; render(); });
 
 function render(){
   const rows = DATA
